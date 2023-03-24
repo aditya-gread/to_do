@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="css/home.css">
+    <script src="js/home.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="actions">
+        <button style="background-color: green; height: 30px;" type="button" onclick="open_popup()">ADD TASK</button>
+        <button style="background-color: white;" type="button" onclick="open_filter()"><img style="width: 15px; height: 15px;" src="assets/filter.jpeg" alt="Filter"></button>
+        <input style="background-color: white;" type="text" placeholder="Search..." id="search_bar">
+        <button style="background-color: white; " type="button" onclick="searchedData()"><img style="width: 15px; height: 15px;" src="assets/search-icon.jpeg" alt="Search"></button>
+    </div>
+    <div class="tasks">
+        <table id="to_do">
+            <thead style="padding: 20px;">
+            <tr>
+                <th>Sno.</th>
+                <th style="width: 10%">Title</th>
+                <th style="width: 40%">Description</th>
+                <th style="width: 20%">End date</th>
+                <th style="width: 10%">Completed</th>
+                <th style="width: 30%">Actions</th>
+            </tr>
+        </thead>
+        <tbody id="root" style="text-align: center; padding: 20px;">
+        </tbody>
+        </table>
+    </div>
+    <div class="task_container" id="item_form">
+        <h1>TASK DETAILS</h1>
+        <form name="task" style="align-content: centre;" id="task_form">
+            <table style="color: white;">
+                <tr>
+                    <td><b>Title : </b></td>
+                    <td><input type="text" placeholder="Enter The task title" name="task_title" required></td>
+                </tr>
+                <tr>
+                    <td><b>Description : </b></td>
+                    <td><textarea style="background-color: white;" name="task_description" rows="4" cols="23" placeholder="Enter the task description here"></textarea></td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Enter End Date : </b>
+                    </td>
+                    <td><input type="datetime-local" name="task_date"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;"><input type="checkbox" id="task_complete" ></td>
+                    <td>Is the task completed</td>
+                </tr>
+                <tr>
+                    <td>Actions :</td>
+                    <td><button id="add_task" style="background-color:green;" type="button" onclick="addItem()">Add Task</button>
+                        <button style="background-color: red;" type="button" onclick="close_popup()">Cancel</button>
+                        <button id="update_task" style="background-color: yellow; display: none;" type="button">Update</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <di class="filter" id="id_filter">
+        <table>
+            <tr><td><button onclick="getActiveData()">Active Task</button></td></tr>
+            <tr><td><button onclick="getCompletedData()">Finished Task</button></td></tr>
+            <tr><td><button onclick="showAllData()">All Task</button></td></tr>
+            <tr><td><button onclick="close_filter()">Cancel</button></td></tr>
+        </table>
+    </di>
+</body>
+</html>

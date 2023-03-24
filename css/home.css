@@ -1,0 +1,54 @@
+*{
+    background-color: grey;
+}
+.tasks{
+    color: white;
+    width: 60%;
+    margin: auto;
+    align-content: center;
+    padding: 10 px;
+    left: 0;
+    right: 0;
+
+}
+.actions{
+    width: 25%;
+    margin: auto;
+    left: 0;
+    margin-bottom: 30px;
+    padding: 10px;
+    border: 3px solid white;
+}
+.task_container{
+    /* margin: auto; */
+    color: white;
+    width: 22%;
+    border: 2px solid white;
+    padding: 20px;
+    display: none;
+    position: fixed;
+    z-index: 6;   
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+table, tr, td, th {
+    border: 1px solid white;
+}
+input{
+    background-color: white;
+
+}
+.filter{
+    /* margin: auto; */
+    color: white;
+    width: 4%;
+    padding: 20px;
+    display: none;
+    position: fixed;
+    z-index: 4;   
+    top: 10%;
+    left: 49%;
+    transform: translate(-50%, -50%);
+}
