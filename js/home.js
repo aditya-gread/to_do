@@ -1,24 +1,44 @@
+let fil = false;    //makes filter state false
+
+// shows all type of data when webpage opens 
 showAllData();
 
+// opens task form
 function open_popup(){
+    document.getElementById('task_form').reset();
+    document.getElementById('add_task').style.display = "block";
+    document.getElementById('update_task').style.display = "none";
     document.getElementById("item_form").style.display = "block";
 }
 
+// close task form
 function close_popup(){
-    document.getElementById('task_form').reset();
     document.getElementById("item_form").style.display = "none";
 }
 
+// opens filter
 function open_filter(){
     document.getElementById("id_filter").style.display = "block";
+    fil = true;
 }
 
+// closes filter
 function close_filter(){
     document.getElementById("id_filter").style.display = "none";
+    fil = false;
+
 }
-function validate(){
-    let title = document.forms["task"]["task_title"].value;
+
+// decides the state of filter button
+function openFilter() {
+    if(fil) close_filter();
+    else open_filter();
+}
+
+// validate if title is empty or not
+function validate(title){
     if( title.trim() == ""){
+        console.log(title);
         alert("Title can't be empty");
         return false;
     }
@@ -27,10 +47,7 @@ function validate(){
 
 // Add new task
 function addItem(){
-    open_popup();
-    document.getElementById('add_task').style.display = "block";
-    document.getElementById('update_task').style.display = "none";
-    if(!validate()){
+    if(!validate(document.forms["task"]["task_title"].value)){
         return;
     }
     var list = getData();
@@ -46,7 +63,6 @@ function addItem(){
     close_popup();  
     list.push(item);
     putData(list);
-    console.log(document.getElementById('task_complete').value);
     showAllData();
 }
 
@@ -68,9 +84,11 @@ function deleteData(index){
     showAllData();
 }
 
+// adds data to local store
 function putData(list){
     localStorage.setItem("to_do_task", JSON.stringify(list));
 }
+
 
 // edit existing data
 function editData(index){
@@ -78,30 +96,35 @@ function editData(index){
     document.getElementById('add_task').style.display = "none";
     document.getElementById('update_task').style.display = "block";
     let data = getData();
+    
     document.forms["task"]["task_title"].value = data[index][0];
     document.forms["task"]["task_description"].value = data[index][1];
     document.forms["task"]["task_date"] = data[index][2];
     document.getElementById('task_complete').checked = data[index][3];
 
-    document.getElementById('update_task').addEventListener("click", function(event){
-        console.log(event)
-        data[index] = [];
+    let update = function(event) {
         let temp = [
             document.forms["task"]["task_title"].value,
             document.forms["task"]["task_description"].value,
             document.forms["task"]["task_date"].value,
             document.getElementById('task_complete').checked,
         ];
-        if(!validate()){
-            return;
+        if(validate(temp[0])){
+            data[index] = temp;
+            putData(data);
+            close_popup();
+            showAllData();
+        }else{
+            editData(index);
         }
-        data[index] = temp;
-        putData(data);
-        close_popup();
-        showAllData();
-    });
+    }
+
+    document.getElementById('update_task').addEventListener("click", update, {once : true});
+    
 }
 
+
+// shows complete data
 function showAllData(){
     const data = getData();
     showData(data);
@@ -141,15 +164,15 @@ function showData(data){
         }
 }
 
+// search function
 function searchedData(){
     if(document.getElementById('search_bar').value == ""){
         alert("Search bar is empty");
-        return;
     }else{
-        let search = document.getElementById('search_bar').value;
+        let search = document.getElementById('search_bar').value.toLowerCase();
         let data = getData();
         let search_data = data.filter(function (x) {
-            return x[0] == search;
+            return x[0].toLowerCase() == search;
         });
         showData(search_data);
     }
