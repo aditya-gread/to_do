@@ -157,7 +157,7 @@ function showData(data){
         let sno =1;
         let html ="";
         for(let ind in data){
-            html = html + `<tr><td>${sno}</td> <td>${data[ind][0]}</td> <td style="text-align:left;">${data[ind][1]}</td> <td>${data[ind][2]}</td><td>${data[ind][3]}</td><td style="text-align: center;"><button style="background-color: blue;" type="button" onclick = "editData(${ind})">Edit</button> <button style="background-color: red;" type="button" onclick = "deleteData(${ind})">Delete</button></td></tr>`;
+            html = html + `<tr><td>${sno}</td> <td>${data[ind][0]}</td> <td style="text-align:left;">${data[ind][1]}</td> <td>${data[ind][2]}</td><td id="task_comp">${data[ind][3]}</td><td style="text-align: center;"><button style="background-color: blue;" type="button" onclick = "editData(${ind})">Edit</button> <button style="background-color: red;" type="button" onclick = "deleteData(${ind})">Delete</button></td></tr>`;
             sno++;
         }
         document.getElementById('root').innerHTML = html;
@@ -176,4 +176,14 @@ function searchedData(){
         });
         showData(search_data);
     }
+}
+
+// search on values on search bar
+function searched(){
+    let search = document.getElementById("search_bar");
+    let data = getData();
+    let filter_todo = data.filter( (x) =>{
+        return x[0].toLowerCase().includes(search.value) || x[1].toLowerCase().includes(search.value);
+    });
+    showData(filter_todo);
 }

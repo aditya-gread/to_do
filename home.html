@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="css/home.css">
     <script src="js/home.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>To Do App</title>
 </head>
 <body>
     <div class="actions">
         <button style="background-color: green; height: 30px;" type="button" onclick="open_popup()">ADD TASK</button>
         <button style="background-color: white;" type="button" onclick="openFilter()"><img style="width: 15px; height: 15px;" src="assets/filter.jpeg" alt="Filter"></button>
-        <input style="background-color: white;" type="text" placeholder="Search..." id="search_bar">
+        <input style="background-color: white;" type="text" placeholder="Search..." id="search_bar" oninput="searched()">
         <button style="background-color: white; " type="button" onclick="searchedData()"><img style="width: 15px; height: 15px;" src="assets/search-icon.jpeg" alt="Search"></button>
     </div>
     <div class="tasks">
@@ -37,7 +37,7 @@
             <table style="color: white;">
                 <tr>
                     <td><b>Title : </b></td>
-                    <td><input type="text" placeholder="Enter The task title" name="task_title" required></td>
+                    <td><input type="text" placeholder="Enter The task title" name="task_title"></td>
                 </tr>
                 <tr>
                     <td><b>Description : </b></td>
