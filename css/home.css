@@ -9,10 +9,9 @@
     padding: 10 px;
     left: 0;
     right: 0;
-
 }
 .actions{
-    width: 25%;
+    width: 22%;
     margin: auto;
     left: 0;
     margin-bottom: 30px;
@@ -49,6 +48,6 @@ input{
     position: fixed;
     z-index: 4;   
     top: 10%;
-    left: 49%;
+    left: 50%;
     transform: translate(-50%, -50%);
 }

@@ -99,7 +99,7 @@ function editData(index){
     
     document.forms["task"]["task_title"].value = data[index][0];
     document.forms["task"]["task_description"].value = data[index][1];
-    document.forms["task"]["task_date"] = data[index][2];
+    document.forms["task"]["task_date"].value = data[index][2];
     document.getElementById('task_complete').checked = data[index][3];
 
     let update = function(event) {
@@ -157,7 +157,7 @@ function showData(data){
         let sno =1;
         let html ="";
         for(let ind in data){
-            html = html + `<tr><td>${sno}</td> <td>${data[ind][0]}</td> <td style="text-align:left;">${data[ind][1]}</td> <td>${data[ind][2]}</td><td id="task_comp">${data[ind][3]}</td><td style="text-align: center;"><button style="background-color: blue;" type="button" onclick = "editData(${ind})">Edit</button> <button style="background-color: red;" type="button" onclick = "deleteData(${ind})">Delete</button></td></tr>`;
+            html = html + `<tr><td>${sno}</td> <td>${data[ind][0]}</td> <td style="text-align:left;">${data[ind][1]}</td> <td>${data[ind][2]}</td><td id="task_comp">${data[ind][3]}</td><td style="text-align: center;"><button style="background-color: blue; color: white;" type="button" onclick = "editData(${ind})">Edit</button> <button style="background-color: red; color: white;" type="button" onclick = "deleteData(${ind})">Delete</button></td></tr>`;
             sno++;
         }
         document.getElementById('root').innerHTML = html;
